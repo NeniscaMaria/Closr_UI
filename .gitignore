@@ -11,3 +11,26 @@ web-build/
 
 # macOS
 .DS_Store
+target
+classes
+bin
+*.log
+dist
+node_modules
+
+# Eclipse
+.classpath
+.project
+.settings
+.metadata
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea
+build
+out
+generated
+MANIFEST.MF
+
