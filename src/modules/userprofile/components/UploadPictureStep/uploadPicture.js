@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity,Image, Text, View} from 'react-native';
-import {styles} from '../styles/uploadPicture';
+import {styles} from '../../styles/uploadPicture';
 import ImageScroller from "./ImageScroller";
 
 const Header = ({text}) => {
@@ -15,10 +15,10 @@ const ActionButtons = ({takePicture, uploadPicture}) => {
     return (
         <View style={styles.actionsContainer}>
             <TouchableOpacity onPress={takePicture}>
-                <Image style={styles.icon} source={require('./assets/takePictureIcon.png')}/>
+                <Image style={styles.icon} source={require('../assets/takePictureIcon.png')}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={uploadPicture}>
-                <Image style={styles.icon} source={require('./assets/uploadIcon.png')}/>
+                <Image style={styles.icon} source={require('../assets/uploadIcon.png')}/>
             </TouchableOpacity>
         </View>
     )

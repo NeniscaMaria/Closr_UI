@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {styles} from '../styles/imageScroller';
+import {Image, TouchableOpacity, View} from 'react-native';
+import {styles} from '../../styles/imageScroller';
 
 
 export default function ImageScroller() {
@@ -12,7 +12,7 @@ export default function ImageScroller() {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={deletePicture}>
-                <Image style={styles.icon} source={require('./assets/trashIcon.png')}/>
+                <Image style={styles.icon} source={require('../assets/trashIcon.png')}/>
             </TouchableOpacity>
         </View>
     );

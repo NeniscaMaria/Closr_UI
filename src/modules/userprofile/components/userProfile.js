@@ -2,7 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, ImageBackground, TouchableHighlight, Text, View} from 'react-native';
 import {styles} from '../styles/userProfile';
 import Breadcrumbs from "./breadcrumbs";
-import UploadPicture from "./uploadPicture";
+import UploadPicture from "./UploadPictureStep/uploadPicture";
+import BioStep from "./BioStep/bioStep";
+import MedicalConditions from "./MedicalConditionsStep/medicalConditions";
+import FinalStep from "./FinalStep/finalStep";
 
 const Header = ({text}) => {
     return (
@@ -31,10 +34,28 @@ const AppButton = ({onPress, title}) => (
     </View>
 );
 
+const screenInfo = [
+    {
+        headerMessage: "Let's set up your profile.",
+        buttonText: "Next step (About you)"
+    }, {
+        headerMessage: "Tell us more about you.",
+        buttonText: "Next step (Medical conditions)"
+    }, {
+        headerMessage: "Connect with people that go through the same experiences as you",
+        buttonText: "Next step (More details)"
+    },{
+        headerMessage: "One step closer to the perfect match",
+        buttonText: "Finish"
+    }
+]
+
+
 export default function SetupProfile() {
     const [step, setStep] = useState(1);
 
     const skip = () => {
+        //TODO: skip
         console.log("Skipping step.")
     };
 
@@ -44,51 +65,32 @@ export default function SetupProfile() {
             case 1:
                 component = <UploadPicture/>;
                 break;
-            // case 2:
-            //     text+="(Medical conditions)";
-            //     break;
-            // case 3:
-            //     text+="(More details)";
-            //     break;
-            // case 4:
-            //     text = "Finish";
-            //     break;
+            case 2:
+                component = <BioStep/>;
+                break;
+            case 3:
+                component = <MedicalConditions/>;
+                break;
+            case 4:
+                component = <FinalStep/>;
+                break;
             default:
                 break;
         }
         return component;
     };
+
     const goToNextStep = () => {
         setStep(step + 1);
-    };
-    const getButtonText = () => {
-        let text = "Next Step ";
-        switch (step) {
-            case 1:
-                text += "(About you)";
-                break;
-            case 2:
-                text += "(Medical conditions)";
-                break;
-            case 3:
-                text += "(More details)";
-                break;
-            case 4:
-                text = "Finish";
-                break;
-            default:
-                break;
-        }
-        return text;
     };
     return (
         <View style={styles.container}>
             <ImageBackground source={require("./assets/background.jpg")} style={styles.image}>
-                <Header text={"Let's set up your profile."} style={styles.header}/>
-                <SubHeader text={"Do you want to do this later?"} skip={skip}/>
+                <Header text={screenInfo[step-1].headerMessage} style={styles.header}/>
+                {step === 1 && <SubHeader text={"Do you want to do this later?"} skip={skip}/>}
                 <Breadcrumbs step={step}/>
                 {getStepComponent()}
-                <AppButton onPress={goToNextStep} title={getButtonText()}/>
+                <AppButton onPress={goToNextStep} title={screenInfo[step-1].buttonText}/>
             </ImageBackground>
         </View>
     );

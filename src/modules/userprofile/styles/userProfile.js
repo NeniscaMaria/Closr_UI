@@ -16,20 +16,21 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 22
     },
     header: {
-        paddingLeft: 20,
+        paddingLeft: 30,
+        paddingRight:65,
         paddingTop: windowHeight/15
     },
     message: {
         fontSize: 14,
-        marginLeft: 20,
+        marginLeft: 30,
         fontWeight: '100'
     },
     skipMessage:{
         fontSize: 14,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     button:{
         margin:10,
