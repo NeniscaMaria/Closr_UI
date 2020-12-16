@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SetupProfile from "./src/modules/userprofile/components/userProfile";
+import Login from "./src/modules/authentication/components/login";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SetupProfile/>
+      <Login/>
     </View>
   );
 }
