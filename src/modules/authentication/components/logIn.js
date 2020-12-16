@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {ImageBackground} from 'react-native-web';
 
 import {styles} from '../styles/login';
-import * as AlertIOS from 'react-native';
 
 const Header = ({text}) => {
     return (
@@ -44,26 +44,28 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
-            <Header text={'Welcome back!\n Continue matching with other\n people and share stories.'}/>
-            <View style={styles.loginForm}>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Email"
-                    onChangeText={email => setEmail(email)}
-                    value={email}
-                />
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Password"
-                    secureTextEntry={true}
-                    onChangeText={password => setPassword(password)}
-                    value={password}
-                />
-                <LoginButton onPress={submitLogin.bind(this, email, password)} title={'Login'}/>
-                <Text style={{textAlign: 'center', marginTop: 10}}>
-                    Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign up</Text>.
-                </Text>
-            </View>
+            <ImageBackground source={require('../assets/loginBackground.svg')} style={styles.image}>
+                <Header text={'Welcome back!\n Continue matching with other\n people and share stories.'}/>
+                <View style={styles.loginForm}>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Email"
+                        onChangeText={email => setEmail(email)}
+                        value={email}
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        onChangeText={password => setPassword(password)}
+                        value={password}
+                    />
+                    <LoginButton onPress={submitLogin.bind(this, email, password)} title={'Login'}/>
+                    <Text style={{textAlign: 'center', marginTop: 10}}>
+                        Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign up</Text>.
+                    </Text>
+                </View>
+            </ImageBackground>
         </View>
     );
 }

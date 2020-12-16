@@ -6,8 +6,13 @@ const windowHeight = Dimensions.get('screen').height;
 export const styles = StyleSheet.create({
     container: {
         width: windowWidth,
-        height: windowHeight,
+        height: windowHeight
+    },
+    image: {
+        width: '100%',
+        height: '100%',
         flex: 1,
+        resizeMode: 'cover',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative'
