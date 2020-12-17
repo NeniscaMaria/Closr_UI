@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('screen').height;
 
-export const styles = StyleSheet.create({
+export const stylesLogIn = StyleSheet.create({
     container: {
         width: windowWidth,
         height: windowHeight
@@ -15,27 +15,28 @@ export const styles = StyleSheet.create({
         resizeMode: 'cover',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative'
+        position: 'relative',
     },
     header: {
         position: 'absolute',
-        top: 64,
-        left: 20
+        top: windowHeight/10,
+        paddingLeft: 20,
+        paddingRight:50,
+        left: 0
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 22,
+        fontSize: 23,
         textAlign: 'left'
     },
     loginForm: {
-        width: 260,
-        height: 200,
+        width: 300,
+        height: 245,
         display: 'flex',
         flexDirection: 'column',
         position: 'absolute',
-        top: '50%',
+        top: '30%',
         left: 20,
-        transform: 'translate(0, -50%)',
         padding: 12,
         backgroundColor: 'rgba(247, 236, 225, 0.7)',
         borderRadius: 20
@@ -44,10 +45,10 @@ export const styles = StyleSheet.create({
         width: '100%',
         textAlignVertical: 'top',
         borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        borderBottomColor: '#8a7090',
-        paddingTop: 10,
-        paddingBottom: 10
+        borderBottomColor: 'rgba(138, 112, 144, 0.6)',
+        paddingTop: 25,
+        paddingBottom: 10,
+        color: 'rgba(138, 112, 144, 0.6)',
     },
     button: {
         width: '100%',
@@ -64,6 +65,19 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         marginTop: 10,
         alignItems: 'center'
-    }
+    },
+    message: {
+        marginTop: 10,
+        fontSize: 14,
+        marginLeft: 30,
+        fontWeight: '100',
+        color: 'rgba(138, 112, 144, 0.9)'
+    },
+    signUpMessage:{
+        marginTop: 10,
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: 'rgba(138, 112, 144, 0.9)'
+    },
 });
 

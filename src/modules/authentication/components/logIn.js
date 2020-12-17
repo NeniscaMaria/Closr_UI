@@ -1,24 +1,25 @@
-import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {ImageBackground} from 'react-native-web';
+import React, {useState, useEffect} from 'react';
+import {Text, TextInput, TouchableOpacity, View, TouchableHighlight} from 'react-native';
+import {stylesLogIn} from '../styles/login';
 
-import {styles} from '../styles/login';
-
-const Header = ({text}) => {
-    return (
-        <View style={styles.header}>
-            <Text style={styles.headerText}> {text}</Text>
-        </View>
-    );
-};
-
-const LoginButton = ({onPress, title}) => (
+export const LoginButton = ({onPress, title}) => (
     <View style={{alignItems: 'center', marginTop: 10}}>
-        <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles.button}>
-            <Text style={styles.buttonText}>{title}</Text>
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={stylesLogIn.button}>
+            <Text style={stylesLogIn.buttonText}>{title}</Text>
         </TouchableOpacity>
     </View>
 );
+
+export const SubHeader = ({text, skip}) => {
+    return (
+        <View style={{flexDirection: 'row'}}>
+            <Text style={stylesLogIn.message}> {text} </Text>
+            <TouchableHighlight onPress={skip}>
+                <View><Text style={stylesLogIn.signUpMessage}>Sign Up</Text></View>
+            </TouchableHighlight>
+        </View>
+    )
+};
 
 function submitLogin(email, password) {
     fetch('http://localhost:1900/api/auth/login', {
@@ -38,34 +39,32 @@ function submitLogin(email, password) {
         });
 }
 
-export default function Login() {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+export default function Login({setShowSignUp}) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
+    const gotoSignUp = () => {
+        setShowSignUp(true);
+    };
     return (
-        <View style={styles.container}>
-            <ImageBackground source={require('../assets/loginBackground.svg')} style={styles.image}>
-                <Header text={'Welcome back!\n Continue matching with other\n people and share stories.'}/>
-                <View style={styles.loginForm}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Email"
-                        onChangeText={email => setEmail(email)}
-                        value={email}
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Password"
-                        secureTextEntry={true}
-                        onChangeText={password => setPassword(password)}
-                        value={password}
-                    />
-                    <LoginButton onPress={submitLogin.bind(this, email, password)} title={'Login'}/>
-                    <Text style={{textAlign: 'center', marginTop: 10}}>
-                        Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign up</Text>.
-                    </Text>
-                </View>
-            </ImageBackground>
+        <View style={stylesLogIn.loginForm}>
+            <TextInput
+                style={stylesLogIn.textInput}
+                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholder="Email"
+                onChangeText={email => setEmail(email)}
+                value={email}
+            />
+            <TextInput
+                style={stylesLogIn.textInput}
+                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholder="Password"
+                secureTextEntry={true}
+                onChangeText={password => setPassword(password)}
+                value={password}
+            />
+            <LoginButton onPress={submitLogin.bind(this, email, password)} title={'Sign In'}/>
+            <SubHeader text={"Don't have an account?"} skip={gotoSignUp}/>
         </View>
     );
 }

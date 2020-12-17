@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from "./src/modules/authentication/components/login";
+import MainAuth from "./src/modules/authentication/components/mainAuth";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Login/>
+      <MainAuth/>
     </View>
   );
 }
