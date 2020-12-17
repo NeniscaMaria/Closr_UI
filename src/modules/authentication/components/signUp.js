@@ -5,6 +5,7 @@ import {stylesLogIn} from '../styles/login';
 import {LoginButton} from "./logIn";
 import DatePicker from "react-native-datepicker";
 
+const textColor = "rgba(138, 112, 144, 0.6)";
 export const SubHeader = ({text, skip}) => {
     return (
         <View style={{flexDirection: 'row'}}>
@@ -31,28 +32,28 @@ export default function SignUp({setShowSignUp}) {
         <View style={styles.signUpForm}>
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="First Name"
                 onChangeText={setFirstName}
                 value={firstName}
             />
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="Last Name"
                 onChangeText={setLastName}
                 value={lastName}
             />
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="Email"
                 onChangeText={setEmail}
                 value={email}
             />
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="Password"
                 secureTextEntry={true}
                 onChangeText={setPassword}

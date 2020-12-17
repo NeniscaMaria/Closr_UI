@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Text, TextInput, TouchableOpacity, View, TouchableHighlight} from 'react-native';
 import {stylesLogIn} from '../styles/login';
 
+const textColor = "rgba(138, 112, 144, 0.6)";
 export const LoginButton = ({onPress, title}) => (
     <View style={{alignItems: 'center', marginTop: 10}}>
         <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={stylesLogIn.button}>
@@ -50,14 +51,14 @@ export default function Login({setShowSignUp}) {
         <View style={stylesLogIn.loginForm}>
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="Email"
                 onChangeText={email => setEmail(email)}
                 value={email}
             />
             <TextInput
                 style={stylesLogIn.textInput}
-                placeholderTextColor ={"rgba(138, 112, 144, 0.6)"}
+                placeholderTextColor ={textColor}
                 placeholder="Password"
                 secureTextEntry={true}
                 onChangeText={password => setPassword(password)}

@@ -16,12 +16,9 @@ const Header = ({text}) => {
 export default function MainAuth() {
     const [showSignUp, setShowSignUp] = React.useState(false);
 
-    React.useEffect(()=>{
-        console.log(showSignUp);
-    },[showSignUp]);
-
     const getText = () => {
-        return showSignUp ? "Begin your journey\n with us!" : 'Welcome back!\n Continue matching with other people and share stories.';
+        return showSignUp ? "Begin your journey\n with us!"
+            : 'Welcome back!\n Continue matching with other people and share stories.';
     };
 
     return (
