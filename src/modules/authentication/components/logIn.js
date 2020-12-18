@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Text, TextInput, TouchableOpacity, View, TouchableHighlight} from 'react-native';
 import {stylesLogIn} from '../styles/login';
+import { useDispatch } from 'react-redux'
 
 const textColor = "rgba(138, 112, 144, 0.6)";
 export const LoginButton = ({onPress, title}) => (
@@ -22,31 +23,26 @@ export const SubHeader = ({text, skip}) => {
     )
 };
 
-function submitLogin(email, password) {
-    fetch('http://localhost:1900/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log(responseData);
-        });
-}
-
 export default function Login({setShowSignUp}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
     const gotoSignUp = () => {
         setShowSignUp(true);
     };
+
+    const submitLogin = (email, password) => {
+        dispatch({
+            type: 'LOGIN',
+            payload:{email, password}
+        });
+    };
+
+    const handleClick = (email,password)=>{
+        submitLogin(email,password)
+    };
+
     return (
         <View style={stylesLogIn.loginForm}>
             <TextInput
@@ -64,7 +60,7 @@ export default function Login({setShowSignUp}) {
                 onChangeText={password => setPassword(password)}
                 value={password}
             />
-            <LoginButton onPress={submitLogin.bind(this, email, password)} title={'Sign In'}/>
+            <LoginButton onPress={handleClick.bind(this, email, password)} title={'Sign In'}/>
             <SubHeader text={"Don't have an account?"} skip={gotoSignUp}/>
         </View>
     );

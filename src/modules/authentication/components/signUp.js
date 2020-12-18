@@ -17,7 +17,7 @@ export const SubHeader = ({text, skip}) => {
     )
 };
 
-export default function SignUp({setShowSignUp}) {
+export default function SignUp({setShowSignUp,navigation}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -81,7 +81,7 @@ export default function SignUp({setShowSignUp}) {
                     }}
                 />
             </View>
-            <LoginButton title={'Sign Up'}/>
+            <LoginButton title={'Sign Up'} onPress={()=>{navigation.navigate("SetUpProfile")}}/>
             <SubHeader text={"Already have an account?"} skip={gotoLogIn}/>
         </View>
     );

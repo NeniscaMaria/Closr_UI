@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {TextInput, Text, View} from 'react-native';
+import {TextInput, Text, View, TouchableOpacity} from 'react-native';
 import {styles} from '../../styles/medicalConditions';
-import {Dropdown} from "react-native-material-dropdown";
 import Bubbles from "./bubbles";
+import {stylesLogIn} from "../../../authentication/styles/login";
 
 const Header = ({text}) => {
     return (
@@ -21,52 +21,37 @@ const Disclaimer = () => {
             <Text style={[styles.disclaimerText, {fontWeight: 'bold'}]}> terms and services.</Text>
         </View>
     )
-}
+};
+
+export const AddButton = ({onPress}) => (
+    <View style={{alignItems: 'center', marginTop: 10}}>
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles.button}>
+            <Text style={styles.buttonText}>Add</Text>
+        </TouchableOpacity>
+    </View>
+);
+
 export default function MedicalConditions() {
     const [value, onChangeText] = React.useState('');
-    const [ddlSelectedValue, setDdlSelectedValue] = React.useState(0);
-    const [selectedConditions, setSelectedConditions] = useState([]);
-    const medicalConditions = [
-        {label: '', value: 0},
-        {
-            label: 'Covid-19',
-            value: 1
-        }, {
-            label: 'Diabetes',
-            value: 2
-        }, {
-            label: 'Cancer',
-            value: 3
-        }, {
-            label: 'Hepatitis B',
-            value: 4
-        }
-    ];
+    const [selectedConditions, setSelectedConditions] = React.useState([]);
 
-    useEffect(() => {
-        let label = '';
-        medicalConditions.forEach((c) => {
-            if (c.value === ddlSelectedValue)
-                label = c.label;
-        });
-        if (label !== '' && !selectedConditions.includes(label))
-            setSelectedConditions([...selectedConditions, label]);
-    }, [ddlSelectedValue]);
+    const addCondition = () => {
+        selectedConditions.push(value);
+        onChangeText("");
+    };
 
     return (
         <View>
             <View style={styles.container}>
                 <Header text={"Medical conditions"}/>
                 <Bubbles data={selectedConditions} setData={setSelectedConditions}/>
-                <Dropdown data={medicalConditions}
-                          value={ddlSelectedValue}
-                          label="Choose medical conditions"
-                          itemColor={'black'}
-                          useNativeDriver={true}
-                          onChangeText={(value, index, data) => {
-                              console.log(value, index)
-                              setDdlSelectedValue(value)
-                          }}/>
+                <View style={{flexDirection: "row"}}>
+                    <TextInput style={styles.textInput}
+                               value={value}
+                               onChangeText={onChangeText}
+                    />
+                    <AddButton onPress={addCondition}/>
+                </View>
             </View>
             <Disclaimer/>
         </View>

@@ -13,7 +13,7 @@ const Header = ({text}) => {
     );
 };
 
-export default function MainAuth() {
+export default function MainAuth(props) {
     const [showSignUp, setShowSignUp] = React.useState(false);
 
     const getText = () => {
@@ -26,7 +26,7 @@ export default function MainAuth() {
             <ImageBackground source={require('../assets/background.jpg')} style={stylesLogIn.image}>
                 <Header text={getText()}/>
                 {!showSignUp ? <Login setShowSignUp={setShowSignUp}/> :
-                    <SignUp setShowSignUp={setShowSignUp}/>}
+                    <SignUp setShowSignUp={setShowSignUp} navigation={props.navigation}/>}
             </ImageBackground>
         </View>
     );
