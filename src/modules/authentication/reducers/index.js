@@ -28,6 +28,29 @@ const submitLogin = (email,password) => {
         }).done();
 };
 
+const submitRegister = (email, password, firstName, lastName, dob) => {
+    fetch('http://localhost:1900/api/auth/register', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            dateOfBirth: dob,
+            role: 'USER'
+        })
+    })
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log(responseData);
+            storeKey(responseData);
+        }).done();
+};
+
 function authorizationReducer(state, action) {
     const {type, payload} = action;
     if(typeof state === 'undefined')
@@ -38,7 +61,12 @@ function authorizationReducer(state, action) {
         submitLogin(email,password);
         return state;
     }
-
+    if (type === 'REGISTER') {
+        const {email, password, firstName, lastName, dob} = payload;
+        console.log("Registering user... ", email);
+        submitRegister(email, password, firstName, lastName, dob);
+        return state;
+    }
 }
 
 export const store = Redux.createStore(authorizationReducer);

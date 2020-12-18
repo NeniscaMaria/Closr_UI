@@ -4,6 +4,7 @@ import {styles} from '../styles/signUp';
 import {stylesLogIn} from '../styles/login';
 import {LoginButton} from "./logIn";
 import DatePicker from "react-native-datepicker";
+import { useDispatch } from 'react-redux';
 
 const textColor = "rgba(138, 112, 144, 0.6)";
 export const SubHeader = ({text, skip}) => {
@@ -18,16 +19,28 @@ export const SubHeader = ({text, skip}) => {
 };
 
 export default function SignUp({setShowSignUp,navigation}) {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dob, setDob] = useState(new Date());
+    const dispatch = useDispatch();
 
     const gotoLogIn = () => {
         setShowSignUp(false);
     };
+
+    const submitRegister = (email, password, firstName, lastName, dob) => {
+        dispatch({
+            type: 'REGISTER',
+            payload: {email, password, firstName, lastName, dob}
+        });
+    };
+
+    const handleClick = (email, password, firstName, lastName, dob)=>{
+        submitRegister(email, password, firstName, lastName, dob)
+    };
+
     return (
         <View style={styles.signUpForm}>
             <TextInput
@@ -81,7 +94,7 @@ export default function SignUp({setShowSignUp,navigation}) {
                     }}
                 />
             </View>
-            <LoginButton title={'Sign Up'} onPress={()=>{navigation.navigate("SetUpProfile")}}/>
+            <LoginButton title={'Sign Up'} onPress={handleClick.bind(this, email, password, firstName, lastName, dob)}/>
             <SubHeader text={"Already have an account?"} skip={gotoLogIn}/>
         </View>
     );
