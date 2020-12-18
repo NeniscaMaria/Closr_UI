@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {TouchableOpacity,Image, Text, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {TouchableOpacity, Image, Text, View} from 'react-native';
 import {styles} from '../../styles/uploadPicture';
 import ImageScroller from "./ImageScroller";
+import Camera from "expo-camera/build/Camera";
 
 const Header = ({text}) => {
     return (
@@ -24,10 +25,27 @@ const ActionButtons = ({takePicture, uploadPicture}) => {
     )
 };
 export default function UploadPicture() {
+    const [img, setImg] = useState(null);
+    const [takePic, setTakePic] = useState(false);
+    const [type, setType] = useState(Camera.Constants.Type.back);
+    const [hasPermission, setHasPermission] = useState(null);
+    let camera = useRef(null);
 
-    const takePicture = () => {
-        //TODO: take picture
-        console.log("take picture")
+
+    useEffect(() => {
+        (async () => {
+            const {status} = await Camera.requestPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
+    }, []);
+    if (hasPermission === null) {
+        return <View/>;
+    }
+    if (hasPermission === false) {
+        return <Text>No access to camera</Text>;
+    }
+    const take = () => {
+        setTakePic(true);
     };
 
     const uploadPicture = () => {
@@ -35,11 +53,40 @@ export default function UploadPicture() {
         console.log("upload picture")
     };
 
+    const takePicture = async () => {
+        if(camera) {
+            const options = {quality: 0.5, base64: true};
+            setTakePic(false);
+            const photo = await camera.takePictureAsync(options);
+            console.log(photo);
+            setImg(photo);
+        }
+    };
+
     return (
         <View style={styles.container}>
-            <Header text={"Upload some pictures of you"}/>
-            <ImageScroller/>
-            <ActionButtons takePicture={takePicture} uploadPicture={uploadPicture}/>
+            {!takePic ?
+                <View>
+                    <Header text={"Upload some pictures of you"}/>
+                    <ImageScroller/>
+                    <ActionButtons takePicture={take} uploadPicture={uploadPicture}/>
+                </View> :
+                <Camera style={styles.camera} type={type} ref={camera}>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back);
+                            }}>
+                            <Text style={styles.textCamera}> Flip</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.capture}
+                            onPress={takePicture}>
+                            <Text style={styles.textCamera}>Tap</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Camera>
+            }
         </View>
     );
 }

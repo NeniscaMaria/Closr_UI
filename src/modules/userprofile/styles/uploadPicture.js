@@ -5,6 +5,7 @@ const windowHeight = Dimensions.get('screen').height;
 
 export const styles = StyleSheet.create({
     container: {
+        flex: 1,
         justifyContent: 'center',
         width: windowWidth-20,
         height: windowHeight/1.7,
@@ -28,6 +29,36 @@ export const styles = StyleSheet.create({
         height:40,
         marginLeft: windowWidth/5.5,
         marginRight: windowWidth/5.5,
+    },
+    btnAlignment: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    camera: {
+        flex: 1,
+    },
+    buttonContainer: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        flexDirection: 'row',
+        margin: 20,
+    },
+    button: {
+        flex: 0.1,
+        alignSelf: 'flex-end',
+        alignItems: 'center',
+    },
+    textCamera: {
+        fontSize: 18,
+        width: 40,
+        color: 'white',
+    },
+    capture: {
+        alignSelf: 'flex-end',
+        left:'57%'
     }
 });
 

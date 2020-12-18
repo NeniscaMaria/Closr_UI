@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../../styles/bubbles';
 
 const Bubble = ({data, deleteCondition}) => {
-    return(
+    return (
         <View style={styles.bubble}>
             <Text style={styles.text}>{data}</Text>
-            <TouchableOpacity onPress={(e)=>{deleteCondition(e)}}>
+            <TouchableOpacity onPress={(e) => {
+                deleteCondition(e)
+            }}>
                 <Image style={styles.icon} source={require('../assets/Times_symbol.svg.png')}/>
             </TouchableOpacity>
         </View>
@@ -15,14 +17,14 @@ const Bubble = ({data, deleteCondition}) => {
 export default function Bubbles({data, setData}) {
     const deleteCondition = (i) => {
         let newData = [...data];
-        newData.splice(i,1);
+        newData.splice(i, 1);
         setData(newData);
     };
 
     return (
         <View style={styles.container}>
-            {data.map((item,i)=>{
-                return <Bubble key={i} data={item} deleteCondition={deleteCondition.bind(this,i)}/>
+            {data.map((item, i) => {
+                return <Bubble key={i} data={item} deleteCondition={deleteCondition.bind(this, i)}/>
             })}
         </View>
     );

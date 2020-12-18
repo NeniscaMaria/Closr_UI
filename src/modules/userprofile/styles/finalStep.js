@@ -54,5 +54,8 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         marginTop:15,
     },
+    slider: {
+        top: 35
+    }
 });
 
