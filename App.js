@@ -6,6 +6,7 @@ import SetupProfile from "./src/modules/userprofile/components/userProfile";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from "./src/modules/splash screen/components/splashScreen";
+import Settings from "./src/modules/settings/components/settingsScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,10 @@ export default function App() {
                     <Stack.Screen
                         name="SetUpProfile"
                         component={SetupProfile}
+                    />
+                    <Stack.Screen
+                        name="Settings"
+                        component={Settings}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

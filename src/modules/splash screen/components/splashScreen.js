@@ -22,7 +22,7 @@ export const Button = ({onPress, title}) => (
 
 export default function SplashScreen(props) {
     const redirect = () => {
-        props.navigation.navigate("MainAuth");
+        props.navigation.navigate("Settings");
     };
 
     return (
