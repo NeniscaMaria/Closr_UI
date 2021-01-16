@@ -97,11 +97,14 @@ export default function EditProfile({navigation}) {
                 </View>
                 <Header text={"Edit Profile"}/>
                 <UserInfo image={"../assets/profilePic.jpg"} navigate={navigation.navigate}/>
-                <Form fName={firstName} setFName={setFirstName}
+
+                <View style={{position:'absolute', top:190}}>
+                    <Form fName={firstName} setFName={setFirstName}
                       lName={lastName} setLName={setLastName}
                       email={email} setEmail={setEmail}
                       selectedConditions={selectedConditions} setSelectedConditions={setSelectedConditions}
                       condition={condition} setCondition={setCondition} addCondition={addCondition}/>
+                </View>
                 <Button onPress={save} title={"Save"}/>
             </ImageBackground>
         </View>

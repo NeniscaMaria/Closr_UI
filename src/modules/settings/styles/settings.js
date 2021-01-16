@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
         height: 50,
         backgroundColor: '#8A7090',
         borderRadius: 20,
-        marginTop: windowHeight/15
+        top: windowHeight/3
     },
     buttonText: {
         textAlign: 'center',
@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
     medSVG:{
         position: 'absolute',
         zIndex: 1,
-        top: windowHeight/3
+        top: windowHeight/3,
     }
 
 });

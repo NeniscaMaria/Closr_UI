@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
     bubble: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: 115,
-        height: 30,
+        width: 110,
+        height: 25,
         backgroundColor: 'rgba(120, 132, 117, 0.3)',
         borderRadius: 20,
         marginRight: 10,
@@ -29,12 +29,11 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
         marginLeft:10,
         textAlignVertical: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     icon:{
         width:30,
         height:30,
-        marginTop: 1
     }
 });
 

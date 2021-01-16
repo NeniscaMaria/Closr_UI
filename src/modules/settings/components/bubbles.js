@@ -5,7 +5,7 @@ import {styles} from '../styles/bubbles';
 const Bubble = ({data, deleteCondition}) => {
     return (
         <View style={styles.bubble}>
-            <Text style={styles.text}>{data}</Text>
+            <Text numberOfLines={1} ellipsizeMode='tail' style={styles.text}>{data}</Text>
             <TouchableOpacity onPress={(e) => {
                 deleteCondition(e)
             }}>
