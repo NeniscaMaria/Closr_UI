@@ -8,6 +8,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from "./src/modules/splash screen/components/splashScreen";
 import Settings from "./src/modules/settings/components/settingsScreen";
 import MatchScreen from './src/modules/match/components/matchScreen';
+import EditProfile from "./src/modules/settings/components/editProfile";
+import EditPictures from "./src/modules/settings/components/editPictures";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +37,14 @@ export default function App() {
                     <Stack.Screen
                         name="MatchScreen"
                         component={MatchScreen}
+                    />
+                    <Stack.Screen
+                        name="EditProfile"
+                        component={EditProfile}
+                    />
+                    <Stack.Screen
+                        name="EditPictures"
+                        component={EditPictures}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

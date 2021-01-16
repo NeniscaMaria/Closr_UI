@@ -45,7 +45,7 @@ export default function MatchScreen({navigation}) {
 
   return (
       <View style={matchStyles.container}>
-        <ImageBackground source={require('../assets/background.jpg')} style={matchStyles.image}>
+        <ImageBackground source={require('../../authentication/assets/background.jpg')} style={matchStyles.image}>
             <View style={styles.topNav}>
                 <NavigationButton onPress={() => {navigation.navigate('Settings')}} svg={settingsSVG}/>
                 <NavigationButton onPress={() => {

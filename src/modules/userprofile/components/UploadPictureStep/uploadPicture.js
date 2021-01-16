@@ -13,7 +13,7 @@ const Header = ({text}) => {
     )
 };
 
-const ActionButtons = ({takePicture, uploadPicture}) => {
+export const ActionButtons = ({takePicture, uploadPicture}) => {
     return (
         <View style={styles.actionsContainer}>
             <TouchableOpacity onPress={uploadPicture}>
@@ -72,7 +72,7 @@ export default function UploadPicture() {
                 let result = await ImagePicker.launchImageLibraryAsync({
                     mediaTypes: ImagePicker.MediaTypeOptions.All,
                     allowsEditing: true,
-                    aspect: [4, 3],
+                    aspect: [3, 4],
                     quality: 1,
                 });
                 console.log(result);

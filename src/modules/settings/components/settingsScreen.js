@@ -51,11 +51,15 @@ const UserInfo = ({image, name, age}) => (
     </View>
 );
 
-const AccountOptions = () => (
+const AccountOptions = ({navigate}) => (
     <View style={{top:25}}>
         <SvgXml xml={userSVG} width={327} height={31}/>
-        <SvgXml style={{marginTop: 12}} xml={editSVG} width={327} height={31}/>
-        <SvgXml style={{marginTop: 12}} xml={passwordSVG} width={327} height={31}/>
+        <TouchableOpacity onPress = {()=>{navigate("EditProfile")}}>
+                <SvgXml style={{marginTop: 12}} xml={editSVG} width={327} height={31}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress = {()=>{console.log("change password")}}>
+                <SvgXml style={{marginTop: 12}} xml={passwordSVG} width={327} height={31}/>
+        </TouchableOpacity>
     </View>
 );
 
@@ -84,7 +88,7 @@ export default function Settings({navigation}) {
                 <Header text={"Settings"}/>
                 <UserInfo image={"../assets/profilePic.jpg"} name={"Jane Smith"} age={21}/>
                 <Button onPress={logOut} title={"Log out"}/>
-                <AccountOptions/>
+                <AccountOptions navigate={navigation.navigate}/>
                 <NotificationsOptions/>
             </ImageBackground>
         </View>
