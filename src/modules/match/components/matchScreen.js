@@ -4,6 +4,10 @@ import {Image, ImageBackground, Text, TouchableOpacity, View} from 'react-native
 import {matchStyles} from '../styles/match';
 
 import ProfileCard from './ProfileCard/profileCard';
+import {styles} from "../../settings/styles/settings";
+import chatSVG from "../../settings/assets/chatSVG";
+import {NavigationButton} from "../../settings/components/settingsScreen";
+import settingsSVG from "../assets/settingsSVG";
 
 const Header = ({text}) => {
   return (
@@ -35,13 +39,18 @@ function dislikeProfile() {
 
 }
 
-export default function MatchScreen(props) {
+export default function MatchScreen({navigation}) {
   const [cardsContainerWidth, setCardsContainerWidth] = React.useState(false);
   const [cardsContainerHeight, setCardsContainerHeight] = React.useState(false);
 
   return (
       <View style={matchStyles.container}>
         <ImageBackground source={require('../assets/background.jpg')} style={matchStyles.image}>
+            <View style={styles.topNav}>
+                <NavigationButton onPress={() => {navigation.navigate('Settings')}} svg={settingsSVG}/>
+                <NavigationButton onPress={() => {
+                }} svg={chatSVG}/>
+            </View>
           <Header text={'Discover'}/>
           <View onLayout={event => {
             const {width, height} = event.nativeEvent.layout;
@@ -50,7 +59,7 @@ export default function MatchScreen(props) {
           }}
                 style={[matchStyles.cardsContainer, {transform: [{translateX: -cardsContainerWidth / 2}, {translateY: -cardsContainerHeight / 2}]}]}>
             {
-              profiles.map((profile, index) => <ProfileCard profile={profile} index={index}/>)
+              profiles.map((profile, index) => <ProfileCard key={index} profile={profile} index={index}/>)
             }
           </View>
           <View style={matchStyles.actionsContainer}>

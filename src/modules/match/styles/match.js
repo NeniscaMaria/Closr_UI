@@ -20,21 +20,21 @@ export const matchStyles = StyleSheet.create({
   },
   header: {
     position: 'absolute',
-    top: windowHeight / 10,
+    top: windowHeight / 8,
     paddingLeft: 20,
     paddingRight: 50,
     left: 0
   },
   headerText: {
     fontWeight: 'bold',
-    fontSize: 23,
+    fontSize: 36,
     textAlign: 'left'
   },
   cardsContainer: {
     width: 290,
     height: 450,
     position: 'absolute',
-    top: windowHeight / 2,
+    top: windowHeight / 2 + 15,
     left: windowWidth / 2
   },
   profileCard: {

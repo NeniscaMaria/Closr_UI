@@ -77,8 +77,7 @@ export default function Settings({navigation}) {
         <View style={styles.container}>
             <ImageBackground source={require('../../authentication/assets/background.jpg')} style={styles.image}>
                 <View style={styles.topNav}>
-                    <NavigationButton onPress={() => {
-                    }} svg={wolrdSVG}/>
+                    <NavigationButton onPress={() => {navigation.navigate('MatchScreen')}} svg={wolrdSVG}/>
                     <NavigationButton onPress={() => {
                     }} svg={chatSVG}/>
                 </View>
