@@ -3,6 +3,7 @@ import {TouchableOpacity, Image, Text, View} from 'react-native';
 import {styles} from '../../styles/uploadPicture';
 import ImageScroller from "./ImageScroller";
 import Camera from "expo-camera/build/Camera";
+import * as ImagePicker from 'expo-image-picker';
 
 const Header = ({text}) => {
     return (
@@ -15,10 +16,10 @@ const Header = ({text}) => {
 const ActionButtons = ({takePicture, uploadPicture}) => {
     return (
         <View style={styles.actionsContainer}>
-            <TouchableOpacity onPress={takePicture}>
+            <TouchableOpacity onPress={uploadPicture}>
                 <Image style={styles.icon} source={require('../assets/takePictureIcon.png')}/>
             </TouchableOpacity>
-            <TouchableOpacity onPress={uploadPicture}>
+            <TouchableOpacity onPress={takePicture}>
                 <Image style={styles.icon} source={require('../assets/uploadIcon.png')}/>
             </TouchableOpacity>
         </View>
@@ -30,7 +31,6 @@ export default function UploadPicture() {
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [hasPermission, setHasPermission] = useState(null);
     let camera = useRef(null);
-
 
     useEffect(() => {
         (async () => {
@@ -49,8 +49,7 @@ export default function UploadPicture() {
     };
 
     const uploadPicture = () => {
-        //TODO: upload picture
-        console.log("upload picture")
+        pickImage();
     };
 
     const takePicture = async () => {
@@ -60,6 +59,27 @@ export default function UploadPicture() {
             const photo = await camera.takePictureAsync(options);
             console.log(photo);
             setImg(photo);
+        }
+    };
+
+    const pickImage = async () => {
+        if (Platform.OS !== 'web') {
+            const {status} = await ImagePicker.requestCameraRollPermissionsAsync();
+            if (status !== 'granted') {
+                alert('Sorry, we need camera roll permissions to make this work!');
+            }
+            else {
+                let result = await ImagePicker.launchImageLibraryAsync({
+                    mediaTypes: ImagePicker.MediaTypeOptions.All,
+                    allowsEditing: true,
+                    aspect: [4, 3],
+                    quality: 1,
+                });
+                console.log(result);
+                if (!result.cancelled) {
+                    setImg(result.uri);
+                }
+            }
         }
     };
 
