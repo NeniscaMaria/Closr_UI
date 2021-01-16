@@ -26,22 +26,31 @@ export const styles = StyleSheet.create({
         color:'#242038',
     },
     button: {
-        position: 'absolute',
-        width: 214,
-        height: 45,
+        width: 61,
+        height: 61,
         backgroundColor: '#8A7090',
-        borderRadius: 20,
-        marginTop: 50
+        position:'absolute',
+        right: 0,
+        zIndex: 2
     },
     buttonText: {
         textAlign: 'center',
         fontWeight: 'normal',
-        fontSize: 18,
+        fontSize: 14,
         color: '#F7ECE1',
         lineHeight: 20,
-        marginTop: 8,
         alignItems: 'center',
-        padding: 5
+        marginTop: 15,
+        padding: 5,
+        zIndex: 2
+    },
+    inputMessage: {
+        width: windowWidth - 58,
+        position:'absolute',
+        height: 58,
+        borderColor: 'black',
+        backgroundColor: 'white',
+        paddingLeft: 20,
     },
     topNav: {
         flexDirection: 'row',
@@ -59,11 +68,11 @@ export const styles = StyleSheet.create({
     chatView: {
         borderColor: 'rgba(0, 0, 0, 0.4)',
         borderWidth: 0.5,
-        height: 692,
+        height: 550,
         width: windowWidth,
-        marginTop: windowHeight/5,
+        marginTop: windowHeight/5.2,
         backgroundColor: 'rgba(247, 236, 225, 0.5)',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     svgChats:{
         marginLeft:20,
@@ -88,14 +97,6 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         marginLeft: 40,
         marginTop: 10
-    },
-    inputMessage: {
-        width: windowWidth,
-        height: 58,
-        borderColor: 'black',
-        backgroundColor: 'white',
-        marginTop:windowHeight/4 + 43,
-        paddingLeft: 20
     }
 });
 
