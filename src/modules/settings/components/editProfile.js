@@ -94,6 +94,7 @@ export default function EditProfile({navigation}) {
                         navigation.navigate('MatchScreen')
                     }} svg={wolrdSVG}/>
                     <NavigationButton onPress={() => {
+                        navigation.navigate('Chat')
                     }} svg={chatSVG}/>
                 </View>
                 <Header text={"Edit Profile"}/>

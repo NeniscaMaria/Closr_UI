@@ -83,6 +83,7 @@ export default function Settings({navigation}) {
                 <View style={styles.topNav}>
                     <NavigationButton onPress={() => {navigation.navigate('MatchScreen')}} svg={wolrdSVG}/>
                     <NavigationButton onPress={() => {
+                        navigation.navigate('Chat')
                     }} svg={chatSVG}/>
                 </View>
                 <Header text={"Settings"}/>

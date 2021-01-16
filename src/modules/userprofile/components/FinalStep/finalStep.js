@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../../styles/finalStep';
 import {Dropdown} from "react-native-material-dropdown";
-import {Slider} from 'rn-range-slider';
+import Slider from 'rn-range-slider';
 import Thumb from "./Thumb";
 import Rail from "./Rail";
 import RailSelected from "./RailSelected";

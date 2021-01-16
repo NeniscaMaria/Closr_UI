@@ -104,6 +104,7 @@ export default function MatchScreen({navigation}) {
                         navigation.navigate('Settings')
                     }} svg={settingsSVG}/>
                     <NavigationButton onPress={() => {
+                        navigation.navigate('Chat')
                     }} svg={chatSVG}/>
                 </View>
                 <Header text={'Discover'}/>
