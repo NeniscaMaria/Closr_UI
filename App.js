@@ -18,6 +18,7 @@ import {AsyncStorage, ActivityIndicator} from 'react-native';
 const Stack = createStackNavigator();
 
 export default function App() {
+
     const [initialRouteName, setInitialRouteName] = useState('');
 
     AsyncStorage.getItem('user_token').then((token) => {
@@ -68,6 +69,14 @@ export default function App() {
                     <Stack.Screen
                         name="ChangePassword"
                         component={ChangePassword}
+                    />
+                    <Stack.Screen
+                        name="Chat"
+                        compnt={ChatScreen}
+                    />
+                    <Stack.Screen
+                        name="ChatFull"
+                        component={ChatFullScreen}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

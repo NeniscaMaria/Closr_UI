@@ -53,7 +53,7 @@ const ChatWindow = ({svg}) => {
                     <Text style={{fontSize:12, fontWeight:'normal', color:'rgba(0, 0, 0, 0.5)', marginTop:60}}>09:20 AM</Text>
                     <SvgXml style={styles.svg2} xml={profilePic} width={60} height={60}/>
                 </View>
-                <Message text={"Hi! Everyhting went fine!"} left={false}/>
+                <Message text={"Hi! Everything went fine!"} left={false}/>
 
             </View>
     );
