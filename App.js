@@ -18,26 +18,30 @@ import {AsyncStorage, ActivityIndicator} from 'react-native';
 const Stack = createStackNavigator();
 
 export default function App() {
+    //
+    // const [initialRouteName, setInitialRouteName] = useState('');
+    //
+    // AsyncStorage.getItem('user_token').then((token) => {
+    //     if (token) {
+    //         console.log(token);
+    //         setInitialRouteName('MatchScreen');
+    //     } else {
+    //         setInitialRouteName('SplashScreen');
+    //     }
+    // });
+    //
+    // React.useEffect(() => {}, [initialRouteName]);
+    //
+    // console.disableYellowBox = true;
 
-    const [initialRouteName, setInitialRouteName] = useState('');
-
-    AsyncStorage.getItem('user_token').then((token) => {
-        if (token) {
-            console.log(token);
-            setInitialRouteName('MatchScreen');
-        } else {
-            setInitialRouteName('SplashScreen');
-        }
-    });
-
-    React.useEffect(() => {}, [initialRouteName]);
-
-    console.disableYellowBox = true;
-
-    return initialRouteName ? (
+    return  (
         <Provider store={store}>
             <NavigationContainer>
-                <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={initialRouteName}>
+                <Stack.Navigator screenOptions={{headerShown: false}} >{/*initialRouteName={initialRouteName}>*/}
+                    <Stack.Screen
+                        name="Chat"
+                        component={ChatScreen}
+                    />
                     <Stack.Screen
                         name="SplashScreen"
                         component={SplashScreen}
@@ -71,17 +75,13 @@ export default function App() {
                         component={ChangePassword}
                     />
                     <Stack.Screen
-                        name="Chat"
-                        compnt={ChatScreen}
-                    />
-                    <Stack.Screen
                         name="ChatFull"
                         component={ChatFullScreen}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>
-    ) : <ActivityIndicator/>;
+    );
 }
 
 

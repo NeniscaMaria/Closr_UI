@@ -49,7 +49,7 @@ export default function MatchScreen({navigation}) {
             age: 24,
             location: 'Bucharest, Romania',
             profilePicture: require('../assets/profiles/profile1.jpg'),
-            bio:lorem,
+            bio: lorem,
             medConditions: medConditions
         },
         {
@@ -58,7 +58,7 @@ export default function MatchScreen({navigation}) {
             age: 27,
             location: 'Oradea, Romania',
             profilePicture: require('../assets/profiles/profile2.jpg'),
-            bio:lorem,
+            bio: lorem,
             medConditions: medConditions
         },
         {
@@ -67,7 +67,7 @@ export default function MatchScreen({navigation}) {
             age: 26,
             location: 'Cluj-Napoca, Romania',
             profilePicture: require('../assets/profiles/profile3.jpg'),
-            bio:lorem,
+            bio: lorem,
             medConditions: medConditions
         }
     ]);
@@ -117,10 +117,10 @@ export default function MatchScreen({navigation}) {
                         <Text>No more new people for now! Try again later^^</Text>
                     </View>
                 }
-                <View style={matchStyles.actionsContainer}>
+                {currentMatchIndex < profiles.length ? <View style={matchStyles.actionsContainer}>
                     <DislikeButton onPress={dislikeProfile}/>
                     <LikeButton onPress={likeProfile}/>
-                </View>
+                </View> : <View/>}
             </ImageBackground>
         </View>
     );

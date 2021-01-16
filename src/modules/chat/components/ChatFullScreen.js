@@ -1,11 +1,10 @@
 import React from 'react';
-import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Text, TouchableOpacity, View,TextInput} from 'react-native';
 import {styles} from '../styles/chatFullScreen';
 import wolrdSVG from "../../settings/assets/worldSVG";
 import chatSVG from "../../settings/assets/chatSVG";
 import {NavigationButton} from "../../settings/components/settingsScreen";
 import {SvgXml} from "react-native-svg";
-import editProfilePicSVG from "../../settings/assets/editProfilePicSVG";
 import profilePic from "../../authentication/assets/profilePic";
 
 const Header = ({text}) => {
@@ -41,6 +40,8 @@ const Message = ({text,left}) => {
     )
 };
 const ChatWindow = ({svg}) => {
+    const [text, setText] = React.useState("");
+
     return (
             <View style={styles.chatView}>
                 <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
@@ -53,8 +54,9 @@ const ChatWindow = ({svg}) => {
                     <Text style={{fontSize:12, fontWeight:'normal', color:'rgba(0, 0, 0, 0.5)', marginTop:60}}>09:20 AM</Text>
                     <SvgXml style={styles.svg2} xml={profilePic} width={60} height={60}/>
                 </View>
-                <Message text={"Hi! Everything went fine!"} left={false}/>
-
+                <Message text={"Hi! Everything went fine! Thank you for asking!"} left={false}/>
+                <TextInput placeholder={"Type something..."} style={styles.inputMessage}
+                           value={text} onChangeText={setText}/>
             </View>
     );
 };

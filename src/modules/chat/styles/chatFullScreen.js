@@ -75,7 +75,6 @@ export const styles = StyleSheet.create({
     },
     svg2:{
         marginTop: 20,
-        marginLeft:windowWidth-70
     },
     textChat:{
         flexDirection: 'column',
@@ -89,6 +88,14 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         marginLeft: 40,
         marginTop: 10
+    },
+    inputMessage: {
+        width: windowWidth,
+        height: 58,
+        borderColor: 'black',
+        backgroundColor: 'white',
+        marginTop:windowHeight/4 + 43,
+        paddingLeft: 20
     }
 });
 
