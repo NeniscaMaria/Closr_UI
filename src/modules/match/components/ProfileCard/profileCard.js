@@ -1,8 +1,6 @@
 import React from 'react';
-import {Image, ImageBackground, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Text, TextInput, View} from 'react-native';
 import {matchStyles} from '../../styles/match';
-import {styles} from "../../../settings/styles/changePassword";
-import Bubbles from "../../../userprofile/components/MedicalConditionsStep/bubbles";
 
 const Details = ({name, age, location}) => {
     const [detailsWidth, setDetailsWidth] = React.useState(false);
@@ -40,15 +38,17 @@ const Bubble = ({data}) => {
 
 export default function ProfileCard({profile, index}) {
     const [showBio, setShowBio] = React.useState(false);
-    const {profilePicture, firstName, lastName, age, location, bio, medConditions} = profile;
-
+    const {firstName, lastName, age, location, profilePicture, bio, medConditions} = profile;
+    const getBlur = () => {
+        return showBio ? 3: 0;
+    };
     return (
         <View style={[matchStyles.profileCard, {top: -index * 10, zIndex: -index}]}
             onTouchStart={()=>{setShowBio(!showBio)}}>
-            <ImageBackground source={profilePicture} style={matchStyles.image}>
+            <ImageBackground source={profilePicture} style={matchStyles.image} blurRadius={getBlur()}>
                 {showBio ?
                     <View style={matchStyles.bioView}>
-                        <Text style={matchStyles.name}>{firstName} {lastName}, {age}</Text>
+                        <Text style={matchStyles.name}>{firstName+" "+lastName+", "+age}</Text>
                         <Text style={matchStyles.location}>{location}</Text>
                         <Input text={"Bio"} value={bio} onChange={()=>{}}/>
                         <Text style={matchStyles.medCond}>Medical conditions</Text>
@@ -58,7 +58,7 @@ export default function ProfileCard({profile, index}) {
                             })}
                         </View>
                     </View>
-                    : <Details name={profile.name} age={profile.age} location={profile.location}/>}
+                    : <Details name={firstName+" "+lastName} age={profile.age} location={profile.location}/>}
             </ImageBackground>
         </View>
     );

@@ -72,13 +72,11 @@ export default function MatchScreen({navigation}) {
         }
     ]);
     const likeProfile = () => {
-        console.log("Like!!");
         //TODO: send like to server and check for match
         goToNextMatch();
     };
-    console.log(currentMatchIndex);
+
     const dislikeProfile = () => {
-        console.log("Dislike:(");
         //TODO: send dislike to server
         goToNextMatch();
     };
