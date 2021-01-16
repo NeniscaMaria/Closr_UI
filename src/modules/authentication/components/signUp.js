@@ -85,13 +85,13 @@ export default function SignUp({setShowSignUp,navigation}) {
                             display: "none"
                         },
                         dateInput: {
-                            marginTop: 24,
+                            marginTop: 20.5,
                             borderWidth: 0,
                             borderBottomWidth: 1,
                             borderBottomColor: 'rgba(138, 112, 144, 0.6)',
                         },
                         dateText: {
-                            color: ' rgba(138, 112, 144, 0.8)'
+                            color: 'rgba(138, 112, 144, 0.8)'
                         }
                     }}
                 />

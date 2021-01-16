@@ -10,7 +10,7 @@ const storeKey = async(response) => {
 };
 
 const submitLogin = (email,password) => {
-    fetch('http://localhost:1900/api/auth/login', {
+    fetch('http://192.168.0.103:1900/api/auth/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -23,13 +23,12 @@ const submitLogin = (email,password) => {
     })
         .then((response) => response.json())
         .then((responseData) => {
-            console.log(responseData);
             storeKey(responseData);
         }).done();
 };
 
 const submitRegister = (email, password, firstName, lastName, dob) => {
-    fetch('http://localhost:1900/api/auth/register', {
+    fetch('http://192.168.0.103:1900/api/auth/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -46,7 +45,6 @@ const submitRegister = (email, password, firstName, lastName, dob) => {
     })
         .then((response) => response.json())
         .then((responseData) => {
-            console.log(responseData);
             storeKey(responseData);
         }).done();
 };

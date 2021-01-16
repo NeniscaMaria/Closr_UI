@@ -25,7 +25,7 @@ export default function MainAuth(props) {
         <View style={stylesLogIn.container}>
             <ImageBackground source={require('../assets/background.jpg')} style={stylesLogIn.image}>
                 <Header text={getText()}/>
-                {!showSignUp ? <Login setShowSignUp={setShowSignUp}/> :
+                {!showSignUp ? <Login setShowSignUp={setShowSignUp} navigation={props.navigation}/> :
                     <SignUp setShowSignUp={setShowSignUp} navigation={props.navigation}/>}
             </ImageBackground>
         </View>

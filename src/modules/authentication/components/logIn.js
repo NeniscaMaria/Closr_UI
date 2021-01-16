@@ -26,7 +26,7 @@ export const SubHeader = ({text, skip}) => {
     )
 };
 
-export default function Login({setShowSignUp}) {
+export default function Login({setShowSignUp, navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -40,6 +40,7 @@ export default function Login({setShowSignUp}) {
             type: 'LOGIN',
             payload:{email, password}
         });
+        navigation.navigate('MatchScreen');
     };
 
     const handleClick = (email,password)=>{
