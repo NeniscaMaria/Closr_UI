@@ -1,4 +1,4 @@
-<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+const like = `<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="35" cy="35" r="35" fill="#8A7090" fill-opacity="0.9"/>
 <circle cx="35" cy="35" r="35" fill="url(#paint0_linear)" fill-opacity="0.4"/>
 <path d="M41.9828 21.2931C39.0879 21.2933 36.4181 22.8554 35 25.3792C33.5819 22.8554 30.9121 21.2933 28.0172 21.2931C23.5896 21.2931 20 25.4 20 29.8276C20 40.9483 35 48.7069 35 48.7069C35 48.7069 50 40.9483 50 29.8276C50 25.4 46.4104 21.2931 41.9828 21.2931Z" fill="#F7ECE1"/>
@@ -10,3 +10,5 @@
 </linearGradient>
 </defs>
 </svg>
+`;
+export default like;

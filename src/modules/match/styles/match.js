@@ -65,12 +65,85 @@ export const matchStyles = StyleSheet.create({
     width: windowWidth,
     height: 42,
     display: 'flex',
+    flexDirection: 'row',
     position: 'absolute',
+    justifyContent: 'space-evenly',
     left: 0,
-    bottom: 16
+    top: windowHeight/1.2
   },
-  button: {
-    width: 42,
-    height: 42
+  bioView:{
+    borderRadius: 20,
+    backgroundColor: '#FFF8F1',
+    height: 383,
+    width: 290,
+    marginTop: 65
+  },
+  name: {
+    marginTop: 20,
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  location:{
+    fontSize:12,
+    marginLeft: 20,
+  },
+  textInput:{
+    borderWidth: 0.5,
+    borderColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 30,
+    backgroundColor: 'rgba(120, 132, 117, 0.1)',
+    height: 160,
+    position: 'absolute',
+    width: 250,
+    top: 30,
+    zIndex: 1,
+    paddingLeft: 20,
+    color: 'rgba(36, 32, 56, 0.8)',
+    fontWeight: 'normal',
+    fontSize: 10,
+    marginLeft: 23
+  },
+  textOverInput: {
+    color: '#242038',
+    fontSize: 16,
+    marginLeft: 43,
+    marginTop: 20,
+    zIndex: 2,
+    paddingLeft: 5,
+    backgroundColor:'#FFF8F1',
+    borderRadius: 20,
+    width: 35,
+  },
+  medCond:{
+    fontSize: 14,
+    fontWeight:'normal',
+    color:"black",
+    marginTop: 170,
+    marginLeft: 20
+  },
+  bubble: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: 70,
+    height: 20,
+    backgroundColor: 'rgba(120, 132, 117, 0.3)',
+    borderRadius: 20,
+    marginRight: 10,
+    marginLeft: 5,
+    marginTop: 5
+  },
+  textBubble: {
+    fontWeight: '100',
+    fontSize: 12,
+    color: '#242038',
+    textAlign: 'left',
+    textAlignVertical: 'center',
+  },
+  containerBubble: {
+    flex:1,
+    flexDirection: 'row',
+    width: 290,
+    marginLeft: 10
   }
 });
