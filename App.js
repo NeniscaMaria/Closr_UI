@@ -18,16 +18,10 @@ import {AsyncStorage, ActivityIndicator} from 'react-native';
 const Stack = createStackNavigator();
 
 export default function App() {
-
     const [initialRouteName, setInitialRouteName] = useState('');
 
     AsyncStorage.getItem('user_token').then((token) => {
-        if (token) {
-            console.log(token);
-            setInitialRouteName('MatchScreen');
-        } else {
-            setInitialRouteName('SplashScreen');
-        }
+        setInitialRouteName(token ? 'MatchScreen' : 'SplashScreen');
     });
 
     React.useEffect(() => {}, [initialRouteName]);

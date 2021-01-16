@@ -1,5 +1,6 @@
-import React from 'react';
-import {AsyncStorage, Image, ImageBackground, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {AsyncStorage, Image, ImageBackground, Text, ToastAndroid, TouchableOpacity, View} from 'react-native';
+import jwt_decode from 'jwt-decode';
 import {styles} from '../styles/settings';
 import {SvgXml} from "react-native-svg";
 import wolrdSVG from "../assets/worldSVG";
@@ -12,6 +13,7 @@ import passwordSVG from "../../authentication/assets/passwordSVG";
 import notificationsHeaderSVG from "../../authentication/assets/notificationsHeaderSVG";
 import notSVG from "../../authentication/assets/notSVG";
 import appSVG from "../../authentication/assets/appSVG";
+import moment from 'moment';
 
 const Header = ({text}) => {
     return (
@@ -45,16 +47,16 @@ const UserInfo = ({image, name, age}) => (
         <SvgXml style={{marginTop: 12}} xml={profilePic} width={90} height={90}/>
         <View style={{flexDirection:'column', marginTop: 15, marginLeft:10}}>
             <Text style={{fontSize:24, lineHeight: 36}}>{name}</Text>
-            <Text style={{fontSize: 14, lineHeight: 21}}>Bucharest, Romania</Text>
+            <Text style={{fontSize: 14, lineHeight: 21}}>Cluj-Napoca, Romania</Text>
             <Text style={{fontSize: 14, lineHeight: 21}}>{age} years old</Text>
         </View>
     </View>
 );
 
-const AccountOptions = ({navigate}) => (
+const AccountOptions = ({navigate, profile}) => (
     <View style={{top:25}}>
         <SvgXml xml={userSVG} width={327} height={31}/>
-        <TouchableOpacity onPress = {()=>{navigate("EditProfile")}}>
+        <TouchableOpacity onPress = {()=>{navigate("EditProfile", {profile})}}>
                 <SvgXml style={{marginTop: 12}} xml={editSVG} width={327} height={31}/>
         </TouchableOpacity>
         <TouchableOpacity onPress = {()=>{navigate("ChangePassword")}}>
@@ -81,7 +83,32 @@ const removeToken = async() => {
   }
 };
 
+const getAge = (dateOfBirth) => {
+  return moment().diff(moment(dateOfBirth, 'DD/MM/YYYY'), 'years');
+}
+
 export default function Settings({navigation}) {
+    const [profile, setProfile] = useState(null);
+
+    AsyncStorage.getItem('user_token').then((token) => {
+      const jwtUser = jwt_decode(token);
+
+      fetch('http://192.168.0.103:1900/api/users/' + jwtUser?.userId, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + token
+        }
+      })
+          .then((response) => response.json())
+          .then((json) => {
+            setProfile(json);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    });
+
     const logOut = () => {
         removeToken().then(() => {
             navigation.reset({
@@ -101,9 +128,11 @@ export default function Settings({navigation}) {
                     }} svg={chatSVG}/>
                 </View>
                 <Header text={"Settings"}/>
-                <UserInfo image={"../assets/profilePic.jpg"} name={"Jane Smith"} age={21}/>
+                <UserInfo image={"../assets/profilePic.jpg"}
+                          name={(profile?.firstName + ' ' + profile?.lastName)}
+                          age={getAge(profile?.dateOfBirth)}/>
                 <Button onPress={logOut} title={"Log out"}/>
-                <AccountOptions navigate={navigation.navigate}/>
+                <AccountOptions navigate={navigation.navigate} profile={profile}/>
                 <NotificationsOptions/>
             </ImageBackground>
         </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {AsyncStorage, ImageBackground, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from '../styles/settings';
 import {SvgXml} from "react-native-svg";
 import wolrdSVG from "../assets/worldSVG";
@@ -10,6 +10,7 @@ import editProfilePicSVG from "../assets/editProfilePicSVG";
 import medCOndSVG from "../assets/medCondSVG";
 import Bubbles from "../components/bubbles";
 import {AddButton} from "../../userprofile/components/MedicalConditionsStep/medicalConditions";
+import jwt_decode from 'jwt-decode';
 
 const Header = ({text}) => {
     return (
@@ -70,16 +71,40 @@ const Form = ({
     </View>
 );
 
-export default function EditProfile({navigation}) {
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
-    const [email, setEmail] = React.useState('');
+export default function EditProfile({navigation, route}) {
+    const profile = route.params?.profile;
+
+    const [firstName, setFirstName] = React.useState(profile?.firstName || '');
+    const [lastName, setLastName] = React.useState(profile?.lastName || '');
+    const [email, setEmail] = React.useState(profile?.email || '');
     const [condition, setCondition] = React.useState('');
     const [selectedConditions, setSelectedConditions] = React.useState([]);
 
     const save = () => {
-        console.log("save")
-        navigation.navigate("Settings");
+      AsyncStorage.getItem('user_token').then((token) => {
+        const jwtUser = jwt_decode(token);
+
+        fetch('http://192.168.0.103:1900/api/users/' + jwtUser?.userId, {
+          method: 'PATCH',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+          })
+        })
+            .then((response) => response.json())
+            .then(() => {
+              navigation.navigate("Settings");
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+      });
     };
 
     const addCondition = () => {

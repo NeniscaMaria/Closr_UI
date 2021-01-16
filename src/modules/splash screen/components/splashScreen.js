@@ -21,12 +21,6 @@ export const Button = ({onPress, title}) => (
 );
 
 export default function SplashScreen(props) {
-    AsyncStorage.getItem('user_token').then((token) => {
-        if (token) {
-            props.navigation.navigate('MatchScreen');
-        }
-    });
-
     const redirect = () => {
         props.navigation.navigate("MainAuth");
     };
