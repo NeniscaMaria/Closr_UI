@@ -79,6 +79,7 @@ export default function EditProfile({navigation}) {
 
     const save = () => {
         console.log("save")
+        navigation.navigate("Settings");
     };
 
     const addCondition = () => {

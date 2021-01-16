@@ -10,6 +10,7 @@ import Settings from "./src/modules/settings/components/settingsScreen";
 import MatchScreen from './src/modules/match/components/matchScreen';
 import EditProfile from "./src/modules/settings/components/editProfile";
 import EditPictures from "./src/modules/settings/components/editPictures";
+import ChangePassword from "./src/modules/settings/components/changePassword";
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,10 @@ export default function App() {
                     <Stack.Screen
                         name="EditPictures"
                         component={EditPictures}
+                    />
+                    <Stack.Screen
+                        name="ChangePassword"
+                        component={ChangePassword}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

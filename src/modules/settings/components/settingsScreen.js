@@ -57,7 +57,7 @@ const AccountOptions = ({navigate}) => (
         <TouchableOpacity onPress = {()=>{navigate("EditProfile")}}>
                 <SvgXml style={{marginTop: 12}} xml={editSVG} width={327} height={31}/>
         </TouchableOpacity>
-        <TouchableOpacity onPress = {()=>{console.log("change password")}}>
+        <TouchableOpacity onPress = {()=>{navigate("ChangePassword")}}>
                 <SvgXml style={{marginTop: 12}} xml={passwordSVG} width={327} height={31}/>
         </TouchableOpacity>
     </View>
