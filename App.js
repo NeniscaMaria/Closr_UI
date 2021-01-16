@@ -13,59 +13,66 @@ import EditPictures from "./src/modules/settings/components/editPictures";
 import ChangePassword from "./src/modules/settings/components/changePassword";
 import ChatScreen from "./src/modules/chat/components/ChatScreen";
 import ChatFullScreen from "./src/modules/chat/components/ChatFullScreen";
+import {AsyncStorage, ActivityIndicator} from 'react-native';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-    return (
-            <Provider store={store}>
-                <NavigationContainer>
-                    <Stack.Navigator screenOptions={{headerShown: false}}>
-                        <Stack.Screen
-                            name="SplashScreen"
-                            component={SplashScreen}
-                        />
-                        <Stack.Screen
-                            name="MainAuth"
-                            component={MainAuth}
-                        />
-                        <Stack.Screen
-                            name="SetUpProfile"
-                            component={SetupProfile}
-                        />
-                        <Stack.Screen
-                            name="Settings"
-                            component={Settings}
-                        />
-                        <Stack.Screen
-                            name="MatchScreen"
-                            component={MatchScreen}
-                        />
-                        <Stack.Screen
-                            name="EditProfile"
-                            component={EditProfile}
-                        />
-                        <Stack.Screen
-                            name="EditPictures"
-                            component={EditPictures}
-                        />
-                        <Stack.Screen
-                            name="ChangePassword"
-                            component={ChangePassword}
-                        />
-                        <Stack.Screen
-                            name="Chat"
-                            component={ChatScreen}
-                        />
-                        <Stack.Screen
-                            name="ChatFull"
-                            component={ChatFullScreen}
-                        />
-                    </Stack.Navigator>
-                </NavigationContainer>
+    const [initialRouteName, setInitialRouteName] = useState('');
 
-            </Provider>
-    );
+    AsyncStorage.getItem('user_token').then((token) => {
+        if (token) {
+            console.log(token);
+            setInitialRouteName('MatchScreen');
+        } else {
+            setInitialRouteName('SplashScreen');
+        }
+    });
+
+    React.useEffect(() => {}, [initialRouteName]);
+
+    console.disableYellowBox = true;
+
+    return initialRouteName ? (
+        <Provider store={store}>
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={initialRouteName}>
+                    <Stack.Screen
+                        name="SplashScreen"
+                        component={SplashScreen}
+                    />
+                    <Stack.Screen
+                        name="MainAuth"
+                        component={MainAuth}
+                    />
+                    <Stack.Screen
+                        name="SetUpProfile"
+                        component={SetupProfile}
+                    />
+                    <Stack.Screen
+                        name="Settings"
+                        component={Settings}
+                    />
+                    <Stack.Screen
+                        name="MatchScreen"
+                        component={MatchScreen}
+                    />
+                    <Stack.Screen
+                        name="EditProfile"
+                        component={EditProfile}
+                    />
+                    <Stack.Screen
+                        name="EditPictures"
+                        component={EditPictures}
+                    />
+                    <Stack.Screen
+                        name="ChangePassword"
+                        component={ChangePassword}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
+    ) : <ActivityIndicator/>;
 }
 
 

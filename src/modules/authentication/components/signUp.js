@@ -25,7 +25,7 @@ export default function SignUp({setShowSignUp,navigation}) {
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [dob, setDob] = useState(new Date());
+    const [dob, setDob] = useState('01/01/1970');
     const dispatch = useDispatch();
 
     const gotoLogIn = () => {
@@ -33,13 +33,23 @@ export default function SignUp({setShowSignUp,navigation}) {
     };
 
     const submitRegister = (email, password, firstName, lastName, dob) => {
+        if (!email || !password || !firstName || !lastName || !dob) {
+            return;
+        }
+
         dispatch({
             type: 'REGISTER',
-            payload: {email, password, firstName, lastName, dob}
+            payload: {email, password, firstName, lastName, dob},
+            onSuccess: () => {
+                navigation.reset({
+                    index: 0,
+                    routes: [{name: 'SetUpProfile'}]
+                });
+            }
         });
     };
 
-    const handleClick = (email, password, firstName, lastName, dob)=>{
+    const handleClick = (email, password, firstName, lastName, dob) => {
         submitRegister(email, password, firstName, lastName, dob)
     };
 
@@ -78,6 +88,7 @@ export default function SignUp({setShowSignUp,navigation}) {
                 <Text style={styles.text}>Date of birth</Text>
                 <DatePicker
                     mode={"date"}
+                    format={'DD/MM/YYYY'}
                     date={dob}
                     onDateChange={setDob}
                     customStyles={{
