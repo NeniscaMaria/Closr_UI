@@ -79,5 +79,8 @@ export const stylesLogIn = StyleSheet.create({
         fontWeight: 'bold',
         color: 'rgba(138, 112, 144, 0.9)'
     },
+    svg:{
+        marginBottom: windowHeight/20
+    }
 });
 

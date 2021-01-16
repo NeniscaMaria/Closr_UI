@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 10,
         paddingRight: 50
+    },
+    svg:{
+        marginTop:20
     }
 });
 

@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {Text, TextInput, TouchableOpacity, View, TouchableHighlight} from 'react-native';
 import {stylesLogIn} from '../styles/login';
 import { useDispatch } from 'react-redux'
-
+import logInDoodle from "../assets/loginDoodle";
+import {styles} from "../../splash screen/styles/splashScreen";
+import doodle from "../../splash screen/assets/doodle";
+import {SvgXml} from "react-native-svg";
 const textColor = "rgba(138, 112, 144, 0.6)";
 export const LoginButton = ({onPress, title}) => (
     <View style={{alignItems: 'center', marginTop: 10}}>
@@ -62,6 +65,7 @@ export default function Login({setShowSignUp}) {
             />
             <LoginButton onPress={handleClick.bind(this, email, password)} title={'Sign In'}/>
             <SubHeader text={"Don't have an account?"} skip={gotoSignUp}/>
+            <SvgXml style={stylesLogIn.svg} xml = {logInDoodle} width={276} height={178}/>
         </View>
     );
 }

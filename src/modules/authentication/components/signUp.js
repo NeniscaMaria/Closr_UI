@@ -5,6 +5,8 @@ import {stylesLogIn} from '../styles/login';
 import {LoginButton} from "./logIn";
 import DatePicker from "react-native-datepicker";
 import { useDispatch } from 'react-redux';
+import {SvgXml} from "react-native-svg";
+import signupDoodle from "../assets/signupDoodle";
 
 const textColor = "rgba(138, 112, 144, 0.6)";
 export const SubHeader = ({text, skip}) => {
@@ -96,6 +98,7 @@ export default function SignUp({setShowSignUp,navigation}) {
             </View>
             <LoginButton title={'Sign Up'} onPress={handleClick.bind(this, email, password, firstName, lastName, dob)}/>
             <SubHeader text={"Already have an account?"} skip={gotoLogIn}/>
+            {/*<SvgXml style={styles.svg} xml={signupDoodle} width={302} height={225}/>*/}
         </View>
     );
 }
