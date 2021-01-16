@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, View, ImageBackground, TouchableOpacity} from 'react-native';
+import {AsyncStorage, ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../styles/splashScreen';
-import {SvgXml} from "react-native-svg";
-import doodle from "../assets/doodle";
+import {SvgXml} from 'react-native-svg';
+import doodle from '../assets/doodle';
 
 const Header = ({text}) => {
     return (
@@ -21,8 +21,14 @@ export const Button = ({onPress, title}) => (
 );
 
 export default function SplashScreen(props) {
+    AsyncStorage.getItem('user_token').then((token) => {
+        if (token) {
+            props.navigation.navigate('MatchScreen');
+        }
+    });
+
     const redirect = () => {
-        props.navigation.navigate("Settings");
+        props.navigation.navigate("MainAuth");
     };
 
     return (

@@ -11,14 +11,30 @@ import MatchScreen from './src/modules/match/components/matchScreen';
 import EditProfile from "./src/modules/settings/components/editProfile";
 import EditPictures from "./src/modules/settings/components/editPictures";
 import ChangePassword from "./src/modules/settings/components/changePassword";
+import {AsyncStorage, ActivityIndicator} from 'react-native';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-    return (
+    const [initialRouteName, setInitialRouteName] = useState('');
+
+    AsyncStorage.getItem('user_token').then((token) => {
+        if (token) {
+            console.log(token);
+            setInitialRouteName('MatchScreen');
+        } else {
+            setInitialRouteName('SplashScreen');
+        }
+    });
+
+    React.useEffect(() => {}, [initialRouteName]);
+
+    console.disableYellowBox = true;
+
+    return initialRouteName ? (
         <Provider store={store}>
             <NavigationContainer>
-                <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={initialRouteName}>
                     <Stack.Screen
                         name="SplashScreen"
                         component={SplashScreen}
@@ -34,7 +50,7 @@ export default function App() {
                     <Stack.Screen
                         name="Settings"
                         component={Settings}
-                        />
+                    />
                     <Stack.Screen
                         name="MatchScreen"
                         component={MatchScreen}
@@ -53,10 +69,8 @@ export default function App() {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-
         </Provider>
-
-    );
+    ) : <ActivityIndicator/>;
 }
 
 

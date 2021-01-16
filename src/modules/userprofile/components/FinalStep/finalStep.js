@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../../styles/finalStep';
 import {Dropdown} from "react-native-material-dropdown";
-import {Slider} from 'rn-range-slider';
+import Slider from 'rn-range-slider';
 import Thumb from "./Thumb";
 import Rail from "./Rail";
 import RailSelected from "./RailSelected";
@@ -47,8 +47,8 @@ export default function FinalStep() {
     const [selectedGenderValue, setSelectedGenderValue] = React.useState(0);
     const [selectedGendersValue, setSelectedGendersValue] = React.useState(0);
     const [selectedGenders, setSelectedGenders] = React.useState([]);
-    const [minAge, setMinAge] = React.useState(10);
-    const [maxAge, setMaxAge] = React.useState(80);
+    const [minAge, setMinAge] = React.useState(18);
+    const [maxAge, setMaxAge] = React.useState(60);
     const genders = [
         {label: '', value: 0},
         {
@@ -125,6 +125,8 @@ export default function FinalStep() {
                     renderRailSelected={renderRailSelected}
                     renderLabel={renderLabel}
                     renderNotch={renderNotch}
+                    low={minAge}
+                    high={maxAge}
                     onValueChanged={handleValueChange}
                 />
             </View>

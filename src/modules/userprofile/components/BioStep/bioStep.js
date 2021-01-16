@@ -30,7 +30,7 @@ export default function BioStep() {
             </View>
             <SvgUri style={styles.svg}
                     width={221}
-                    height={183}
+                    height={163}
                     source={require('../assets/personalNotes.svg')}/>
         </View>
     );

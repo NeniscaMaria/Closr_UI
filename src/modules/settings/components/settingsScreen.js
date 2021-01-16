@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ImageBackground, Text, TouchableOpacity, View} from 'react-native';
+import {AsyncStorage, Image, ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../styles/settings';
 import {SvgXml} from "react-native-svg";
 import wolrdSVG from "../assets/worldSVG";
@@ -71,10 +71,24 @@ const NotificationsOptions = () => (
     </View>
 );
 
+const removeToken = async() => {
+  try {
+    await AsyncStorage.removeItem('user_token');
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 export default function Settings({navigation}) {
     const logOut = () => {
-        //TODO logout
-        navigation.navigate("SplashScreen");
+        removeToken().then(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{name: 'SplashScreen'}]
+            });
+        });
     };
 
     return (

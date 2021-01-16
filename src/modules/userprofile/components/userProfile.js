@@ -50,7 +50,7 @@ const screenInfo = [
     }
 ];
 
-export default function SetupProfile() {
+export default function SetupProfile({navigation}) {
     const [step, setStep] = useState(1);
 
     const skip = () => {
@@ -82,6 +82,14 @@ export default function SetupProfile() {
     const goToNextStep = () => {
         setStep(step + 1);
     };
+
+    const goToMatchScreen = () => {
+        navigation.reset({
+            index: 0,
+            routes: [{name: 'MatchScreen'}]
+        });
+    }
+
     return (
         <View style={styles.container}>
             <ImageBackground source={require("../../authentication/assets/background.jpg")} style={styles.image}>
@@ -89,7 +97,7 @@ export default function SetupProfile() {
                 {step === 1 && <SubHeader text={"Do you want to do this later?"} skip={skip}/>}
                 <Breadcrumbs step={step}/>
                 {getStepComponent()}
-                <AppButton onPress={goToNextStep} title={screenInfo[step - 1].buttonText}/>
+                <AppButton onPress={step === 4 ? goToMatchScreen : goToNextStep} title={screenInfo[step - 1].buttonText}/>
             </ImageBackground>
         </View>
     );

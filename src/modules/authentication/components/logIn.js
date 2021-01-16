@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {Text, TextInput, TouchableOpacity, View, TouchableHighlight} from 'react-native';
+import React, {useState} from 'react';
+import {Text, TextInput, TouchableHighlight, TouchableOpacity, View} from 'react-native';
 import {stylesLogIn} from '../styles/login';
-import { useDispatch } from 'react-redux'
-import logInDoodle from "../assets/loginDoodle";
-import {styles} from "../../splash screen/styles/splashScreen";
-import doodle from "../../splash screen/assets/doodle";
-import {SvgXml} from "react-native-svg";
+import {useDispatch} from 'react-redux';
+import logInDoodle from '../assets/loginDoodle';
+import {SvgXml} from 'react-native-svg';
+
 const textColor = "rgba(138, 112, 144, 0.6)";
 export const LoginButton = ({onPress, title}) => (
     <View style={{alignItems: 'center', marginTop: 10}}>
@@ -36,11 +35,19 @@ export default function Login({setShowSignUp, navigation}) {
     };
 
     const submitLogin = (email, password) => {
+        if (!email || !password) {
+          return;
+        }
         dispatch({
             type: 'LOGIN',
-            payload:{email, password}
+            payload: {email, password},
+            onSuccess: () => {
+                navigation.reset({
+                    index: 0,
+                    routes: [{name: 'MatchScreen'}]
+                });
+            }
         });
-        navigation.navigate('MatchScreen');
     };
 
     const handleClick = (email,password)=>{

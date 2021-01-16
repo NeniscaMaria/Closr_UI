@@ -14,7 +14,7 @@ const Header = ({text}) => {
 };
 
 export default function MainAuth(props) {
-    const [showSignUp, setShowSignUp] = React.useState(false);
+    const [showSignUp, setShowSignUp] = React.useState(true);
 
     const getText = () => {
         return showSignUp ? "Begin your journey\n with us!"
